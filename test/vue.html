@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        
+        <div>
+            <input type="text" v-model="inpitName">
+            <button @click="add()">添加</button>
+        </div>
+
+        
+        <ul>
+            <li v-for="(item, index) in list" :key="item.id">
+                id:{{item.id}} ---- 姓名{{item.name}}
+                <span @click="deletes(index)">删除</span>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                list: [
+                    { id: 0, name: '嬴政' },
+                    { id: 1, name: '吕不韦' },
+                    { id: 2, name: '料啊' }
+                ],
+                inpitName: ''
+            },
+            methods: {
+                add() {
+                    var newName = { id: this.list.length, name: this.inpitName };
+                    this.list.push(newName);
+                    this.inpitName = ''
+                },
+                deletes(index) {
+                    this.list.splice(index, 1);
+                }
+            }
+        })
+
+    </script>
+
+</body>
+
+</html>
