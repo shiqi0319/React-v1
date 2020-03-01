@@ -19,8 +19,9 @@
         
         <ul>
             <li v-for="(item, index) in list" :key="item.id">
+                <input type="checkbox">
                 id:{{item.id}} ---- 姓名{{item.name}}
-                <span @click="deletes(index)">删除</span>
+                <span @click="deleteLi(index)">删除</span>
             </li>
         </ul>
     </div>
@@ -39,10 +40,11 @@
             methods: {
                 add() {
                     var newName = { id: this.list.length, name: this.inpitName };
-                    this.list.push(newName);
+                    // this.list.push(newName);
+                    this.list.unshift(newName);
                     this.inpitName = ''
                 },
-                deletes(index) {
+                deleteLi(index) {
                     this.list.splice(index, 1);
                 }
             }
